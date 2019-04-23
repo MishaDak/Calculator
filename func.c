@@ -1,8 +1,8 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <stdlib.h>
 #include "func.h"
 
-int compare (char ch, char *list) //Сравнение символа со списком
+int compare (char ch, char *list) //РЎСЂР°РІРЅРµРЅРёРµ СЃРёРјРІРѕР»Р° СЃРѕ СЃРїРёСЃРєРѕРј
 {
 	int i;
 	for (i = 0; list[i] != '\0'; i++)
@@ -13,23 +13,23 @@ int compare (char ch, char *list) //Сравнение символа со списком
 	return 0;
 }
 
-void input(char** str) //Ввод примера
+void input(char** str) //Р’РІРѕРґ РїСЂРёРјРµСЂР°
 {
-	int i, open_brackets = 0;
+	int i, j, open_brackets = 0;
 	*str = malloc(sizeof(char) * 100);
 
 	for (i = 0; ((*str)[i] = getchar()) != '\n'; i++)
 	{
 		if (compare ((*str)[i], "()-+/*.0123456789"))
 		{
-			if ((*str)[i] == '(') //Если скобка открывается
+			if ((*str)[i] == '(') //Р•СЃР»Рё СЃРєРѕР±РєР° РѕС‚РєСЂС‹РІР°РµС‚СЃСЏ
 			{
 				open_brackets++;
 			}
-			if ((*str)[i] == ')') //Если скобка закрывается
+			if ((*str)[i] == ')') //Р•СЃР»Рё СЃРєРѕР±РєР° Р·Р°РєСЂС‹РІР°РµС‚СЃСЏ
 			{
 				open_brackets--;
-				if (open_brackets < 0) //Если закрытых скобок больше открытых
+				if (open_brackets < 0) //Р•СЃР»Рё Р·Р°РєСЂС‹С‚С‹С… СЃРєРѕР±РѕРє Р±РѕР»СЊС€Рµ РѕС‚РєСЂС‹С‚С‹С…
 				{
 					printf("Wrong input. Not found opened bracket before closed bracket.\n");
 					return ;
@@ -42,9 +42,37 @@ void input(char** str) //Ввод примера
 			return ;
 		}
 	}
-	if (open_brackets) //Если открытых скобок больше закрытых
+	if (open_brackets) //Р•СЃР»Рё РѕС‚РєСЂС‹С‚С‹С… СЃРєРѕР±РѕРє Р±РѕР»СЊС€Рµ Р·Р°РєСЂС‹С‚С‹С…
 	{
 		printf("Wrong input. Too many opened brackets.\n");
 		return ;
+	}
+for (i = 0; (*str)[i] != '\0'; i++)
+	{
+		if (compare((*str)[i], "+/*") && (( (i == 0) || ((*str)[i + 1] =='\0') || ((*str)[i - 1] == '(') || ((*str)[i + 1] == ')') ) || ( (i > 0) && ((compare((*str)[i - 1], "+-/*")) || (compare((*str)[i + 1], "+-/*")))))) //РќРµРїСЂР°РІРёР»СЊРЅРѕРµ СЂР°СЃРїРѕР»РѕР¶РµРЅРёРµ Р·РЅР°РєРѕРІ
+		{
+			printf("Wrong input. Symbol placement error.\n");
+			return ;
+		}
+		if (((*str)[i] == '.') && (( i - 1 < 0) || (compare((*str)[i + 1], "-+/*") || compare((*str)[i - 1], "+-/*") || ((*str)[i + 1] == '\0') || ((*str)[i - 1] == '\0'))))//РќРµРїСЂР°РІРёР»СЊРЅРѕРµ СЂР°СЃРїРѕР»РѕР¶РµРЅРёРµ С‚РѕС‡РєРё
+		{
+			printf("Wrong input. \n");
+		}
+		if ((*str)[i] == '.')//РўРѕС‡РєР° СЂСЏРґРѕРј СЃРѕ СЃРєРѕР±РєР°РјРё
+		{
+			if (compare((*str)[i + 1], "()") || compare((*str)[i - 1], "()"))
+			{
+				printf("Wrong input. Dot before or after bracket. \n");
+				return ;
+			}
+			for (j = i + 1; (*str)[j] != '\0'; j++)
+			{
+				if ((*str)[j] == '.')
+				{
+					printf("Wrong input. Double dot.\n");
+					return ;
+				}
+			}
+		}
 	}
 }
