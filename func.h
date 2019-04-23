@@ -5,6 +5,6 @@
 
 int compare (char ch, char *list);
 
-void input(char **str);
+void input(char **str, int* mistake);
 
 #endif

@@ -3,18 +3,21 @@
 
 #include "func.h"
 
-void input(char** str);
+void input(char** str, int* mistake);
 
 int main()
 {
 	char* str = NULL;
+	int mistake = 0;
 
-	input(&str);
+	input(&str, &mistake);
 
-
-	for (int i = 0; str[i] != '\0'; i++)
+	if (mistake == 0)
 	{
-		printf("%c", str[i]);
+		for (int i = 0; str[i] != '\0'; i++)
+		{
+			printf("%c", str[i]);
+		}
 	}
 
 	return 0;
