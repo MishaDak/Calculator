@@ -1,11 +1,14 @@
-calc: main.o func.o
-	gcc -Wall -Werror main.o func.o -o calc
+all: bin/calc
+bin/calc: build/main.o build/func.o
+	gcc -Wall -Werror build/main.o build/func.o -o bin/calc
 
-main.o: main.c
-	gcc -Wall -Werror -c main.c -o main.o
+build/main.o: src/main.c
+	gcc -Wall -Werror -c src/main.c -o build/main.o
 
-func.o: func.c
-	gcc -Wall -Werror -c func.c -o func.o
+build/func.o: src/func.c
+	gcc -Wall -Werror -c src/func.c -o build/func.o
+
+.PHONY: clean
 
 clean:
 	rm -rf *.o
