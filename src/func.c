@@ -32,3 +32,71 @@ double charToDigit(char *str, int i1, int i2)
 }
 
 
+double Calculation(char **str, int Start, int End)
+{
+	int i = Start, OpenBr, CloseBr, openbr, closebr, Tmp = 0;
+
+	if ((str[Start] == '(') && (str[End] == ')'))
+	{
+		OpenBr = 1;
+		CloseBr = 0;
+		i++;
+		while(OpenBr !== CloseBr)
+		{
+			if (str[i] == '(')
+				OpenBr++;
+			if (str[i] == ')')
+				CloseBr++;
+			i++;
+		}
+		i--;
+
+		if (i == End)
+			return Calculation(str, Start + 1, End - 1);
+	}
+
+	for (i = Start; i <= End; i++)
+	{
+		switch (str[i])
+		{
+			case '+':
+				return Calculation(str, Start, (i - 1)) + Calculation(str, (i + 1), End);
+			case '-':
+				if (i > Tmp)
+					Tmp = i;
+				break;
+			case '*': if (Tmp == 0)
+					Tmp = i;
+				break;
+			case '/':
+				if ((Tmp == 0) || (str[Tmp] == '/'))
+					Tmp = i;
+				break;
+			case '(':
+				openbr = 1;
+				closebr = 0;
+				i++;
+				while(openbr !== closebr)
+				{
+					if (str[i] == '(')
+						openbr++;
+					if (str[i] == ')')
+						closebr++;
+					i++;
+				}
+				i--;
+				break;
+		}
+	}
+	if (Tmp > 0)
+	{
+		switch(str[Tmp])
+		{
+			case '-': return Calculation(str, Start, Tmp - 1) - Calculation(str, Tmp + 1, End);
+			case '*': return Calculation(str, Start, Tmp - 1) * Calculation(str, Tmp + 1, End);
+			case '/': return Calculation(str, Start, Tmp - 1) / Calculation(str, Tmp + 1, End);
+		}
+	}
+	return charToDigit(str, Start, End);
+}
+
