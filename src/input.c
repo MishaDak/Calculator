@@ -84,7 +84,7 @@ void input(char** str, int* mistake, int* lenght) //Ввод примера
         }
         if (((*str)[i] == '(') && (i > 0))
         {
-            if (compare((*str)[i - 1], "(+-/*"))
+            if (compare((*str)[i - 1], "(+-/*") == 0)
             {
                 printf("Wrong input. Not found symbol before bracket.\n");
                 *mistake = 1;
