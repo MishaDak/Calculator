@@ -14,7 +14,7 @@ int compare (char ch, char *list) //Сравнение символа со сп�
     return 0;
 }
 
-void input(char** str, int* mistake) //Ввод примера
+void input(char** str, int* mistake, int* lenght) //Ввод примера
 {
     int i, j, open_brackets = 0;
     *str = malloc(sizeof(char) * 100);
@@ -23,6 +23,7 @@ void input(char** str, int* mistake) //Ввод примера
     {
         if (compare ((*str)[i], "()-+/*.0123456789"))
         {
+            lenght++;
             if ((*str)[i] == '(') //Если скобка открывается
             {
                 open_brackets++;
