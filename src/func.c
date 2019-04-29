@@ -106,3 +106,42 @@ for (i = 0; (*str)[i] != '\0'; i++)
 		}
 	}
 }
+
+
+int checkLBracket (char l) 
+{
+	if(l == '(')
+		return 1;
+	else return 0;
+}
+
+int checkRBracket (char l)
+{
+	if(l == ')')
+		return 1;
+	else return 0;
+}
+
+int checkDigit(char l)
+{
+	if(l >= '0' && l <= '9') 
+		return 1;
+	else return 0;
+}
+int checkNum(char *str)
+{
+	while(*str)
+	{
+		if(!checkDigit(*p))
+			return 0;
+		str++;
+	}
+return 1;
+}
+
+int checkOperator(char l)
+{	
+	if( l == '+' || l == '-' || l == '*' || l == '/')
+	return l;
+	else return 0;
+}
