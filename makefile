@@ -1,6 +1,6 @@
 calc: bin/calc
 
-bin/calc: build/main.o build/input.o
+bin/calc: build/main.o build/input.o build/func.o
 	gcc -Wall -Werror build/main.o build/input.o -o bin/calc
 
 build/main.o: src/main.c
