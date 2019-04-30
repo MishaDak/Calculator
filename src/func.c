@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "func.h"
 
+#define BUFLEN 20
 int compare (char ch, char *list) //Сравнение символа со списком
 {
 	int i;
@@ -145,3 +146,54 @@ int checkOperator(char l)
 	return l;
 	else return 0;
 }
+
+int performOp(int num1, int num2, char op)
+{
+	switch(op){
+	case '+': return num1+num2;
+	case '-': return num1-num2;
+	case '*': return num1*num2;
+	case '/':
+		  if(num2 == 0){
+			  printf("Неправильный ввод. Деление на ноль невозможно");
+		  	//здесь должен быть выход
+		  }
+		return num1/num2;
+	}
+
+}
+
+int calc(char* str)
+{
+if(checkNum(str) == 1)
+	return atoi(p);
+
+char leftOper[BUFLEN];
+char rightoper[BUFLEN];
+
+
+}
+
+int grabLeftOper(char* str, char* oper)
+{
+int i;
+	
+for(i = 0;;)
+{
+if(checkDigit(*p)
+		break;
+		oper[i++] = str++;
+}
+return i;
+}
+
+int grabRightOper(char *str, char*oper)
+{
+while(checkDigit(*p)){
+*oper++ = *str++;
+
+}
+return 0;
+}
+
+
