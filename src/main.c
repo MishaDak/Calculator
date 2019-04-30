@@ -5,7 +5,7 @@
 #include "func.h"
 
 void input(char **str,int* mistake, int* lenght);
-double Calculation(char **str, int Start, int End);
+double Calculation(char *str, int Start, int End);
 
 int main()
 {
@@ -16,14 +16,9 @@ int main()
 
 	if (mistake == 0)
 	{
-		for (int i = 0; str[i] != '\0'; i++)
-		{
-			printf("%c", str[i]);
-		}
-	}
-
-	double result = Calculation(&str, 0, lenght - 1);
+	double result = Calculation(str, 0, lenght - 1);
 	printf("\t\t%s = %lf\n", str, result);
+	}
 
 	return 0;
 }
