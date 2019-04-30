@@ -170,8 +170,13 @@ if(checkNum(str) == 1)
 
 char leftOper[BUFLEN];
 char rightoper[BUFLEN];
+char operator;
 
+int leftOperIndex = grabLeftOper(str, leftOper);
+int operationIndex = grabOperator(str, leftOperIndex, rightOperand);
+int rightOperIndex = grabRightOper(p+operationIndex, 
 
+return performOperator(calc(leftOper), calc(right), operator);		
 }
 
 int grabLeftOper(char* str, char* oper)
@@ -184,6 +189,7 @@ if(checkDigit(*p)
 		break;
 		oper[i++] = str++;
 }
+oper[i] = '\0';
 return i;
 }
 
@@ -191,9 +197,13 @@ int grabRightOper(char *str, char*oper)
 {
 while(checkDigit(*p)){
 *oper++ = *str++;
-
 }
+*oper = '\0';
 return 0;
 }
 
-
+int grabOperator(char* str, int index, char* op_buf)
+{
+*op_buf = str[index];
+return index+1;
+}

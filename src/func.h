@@ -24,4 +24,6 @@ int calc(char* str);
 int grabLeftOper(char* str, char* oper);
 
 int grabLeftOper(char* str, char* oper);
+
+int grabOperator(cahr *str, int index, char* op_buf);
 #endif
