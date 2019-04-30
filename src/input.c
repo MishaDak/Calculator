@@ -23,7 +23,7 @@ void input(char** str, int* mistake, int* lenght) //Ввод примера
     {
         if (compare ((*str)[i], "()-+/*.0123456789"))
         {
-            lenght++;
+            *lenght = *lenght + 1;
             if ((*str)[i] == '(') //Если скобка открывается
             {
                 open_brackets++;
