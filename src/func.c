@@ -1,5 +1,6 @@
 ﻿#include "func.h"
 #include "Input.h"
+#include <stdio.h>
 
 double charToDigit(char *str, int i1, int i2)
 {
@@ -22,7 +23,7 @@ double charToDigit(char *str, int i1, int i2)
 			break;
 	}
 	Result = Result / 10;
-	d=i;
+	d = i;
 	for (i = i + 1; i <= i2; i++)
 		if (str[i] != '.')
 			Result = Result + (doubles + (str[i] - '0')) / power(10, i - d);
@@ -32,7 +33,7 @@ double charToDigit(char *str, int i1, int i2)
 }
 
 
-double Calculation(char **str, int Start, int End)
+double Calculation(char *str, int Start, int End)
 {
 	int i = Start, OpenBr, CloseBr, openbr, closebr, Tmp = 0;
 
@@ -41,7 +42,7 @@ double Calculation(char **str, int Start, int End)
 		OpenBr = 1;
 		CloseBr = 0;
 		i++;
-		while(OpenBr !== CloseBr)
+		while(OpenBr != CloseBr)
 		{
 			if (str[i] == '(')
 				OpenBr++;
@@ -76,7 +77,7 @@ double Calculation(char **str, int Start, int End)
 				openbr = 1;
 				closebr = 0;
 				i++;
-				while(openbr !== closebr)
+				while(openbr != closebr)
 				{
 					if (str[i] == '(')
 						openbr++;
