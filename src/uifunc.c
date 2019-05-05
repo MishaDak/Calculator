@@ -3,8 +3,11 @@
 #include"func.h"
 #include"input.h"
 
-gchar answer[20];
-
+extern int mistake;
+extern int lenght;
+extern gchar answer[20];
+extern GtkWidget* field;
+extern gchar text_field[100];
 void button_one_clicked(GtkWidget* widget, gpointer data) {
 	strcat(text_field, (gchar*)data);
 	gtk_entry_set_text(GTK_ENTRY(field), text_field);

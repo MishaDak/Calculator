@@ -3,6 +3,8 @@
 #include "func.h"
 #include "input.h"
 
+extern int mistake;
+extern int lenght;
 int compare (char ch, char *list) //Сравнение символа со списком
 {
     int i;
