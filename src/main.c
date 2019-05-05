@@ -1,5 +1,6 @@
 #include <gtk/gtk.h>
-#include "uifunc.h"
+#include"uifunc.h"
+
 gchar text_field[100];
 gchar answer[20];
 int mistake = 0;

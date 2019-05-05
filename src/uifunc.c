@@ -2,7 +2,8 @@
 #include<gtk/gtk.h>
 #include"func.h"
 #include"input.h"
-
+double Calculation(char *str, int Start, int End);
+void input(char** str, int* mistake, int* lenght);
 extern int mistake;
 extern int lenght;
 extern gchar answer[20];
