@@ -1,5 +1,5 @@
 ﻿#include "func.h"
-#include "Input.h"
+#include "input.h"
 #include <stdio.h>
 
 double charToDigit(char *str, int i1, int i2)
