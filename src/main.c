@@ -1,5 +1,5 @@
 #include <gtk/gtk.h>
-#include"uifunc.h"
+#include "uifunc.h"
 
 gchar text_field[100];
 gchar answer[20];
@@ -67,7 +67,7 @@ int main(int argc, char *argv[]) {
 			 G_CALLBACK(button_leftBracket_clicked), "(");
 	button_rightBracket = gtk_button_new_with_label(")");
 	g_signal_connect(G_OBJECT(button_rightBracket), "clicked",
-			 G_CALLBACK(button_rightBracket), ")");
+			 G_CALLBACK(button_rightBracket_clicked), ")");
 	button_point = gtk_button_new_with_label(".");
 	g_signal_connect(G_OBJECT(button_point), "clicked",
 			 G_CALLBACK(button_point_clicked), ".");
