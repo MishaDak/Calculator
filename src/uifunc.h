@@ -1,6 +1,5 @@
-#ifdef UI_H
+#ifndef UI_H
 #define UI_H
-
 void button_one_clicked(GtkWidget* widget, gpointer data);
 void button_two_clicked(GtkWidget* widget, gpointer data);
 void button_three_clicked(GtkWidget* widget, gpointer data);

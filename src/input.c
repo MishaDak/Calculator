@@ -19,9 +19,9 @@ int compare (char ch, char *list) //Сравнение символа со сп�
 void input(char** str, int* mistake, int* lenght) //Ввод примера
 {
     int i, j, open_brackets = 0;
-    *str = malloc(sizeof(char) * 100);
+ 
 
-    for (i = 0; ((*str)[i] = getchar()) != '\n'; i++)
+    for (i = 0; (*str)[i] != '\n'; i++)
     {
         if (compare ((*str)[i], "()-+/*.0123456789"))
         {
