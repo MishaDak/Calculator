@@ -3,8 +3,7 @@
 
 #include <stdlib.h>
 
-int compare (char ch, char *list);
-
-void input(char **str, int* mistake);
+double charToDigit(char **str, int i1, int i2);
+double Calculation(char *str, int Start, int End);
 
 #endif
