@@ -23,7 +23,7 @@ void input(char** str, int* mistake, int* lenght) //Ввод примера
 
     for (i = 0; (*str)[i] != '\n'; i++)
     {
-        if (compare ((*str)[i], "()-+/*.0123456789"))
+        if (compare ((*str)[i], "()-+/*^s.0123456789"))
         {
             *lenght = *lenght + 1;
             if ((*str)[i] == '(') //Если скобка открывается
@@ -56,13 +56,13 @@ void input(char** str, int* mistake, int* lenght) //Ввод примера
     }
     for (i = 0; (*str)[i] != '\0'; i++)
     {
-        if (compare((*str)[i], "+/*") && (( (i == 0) || ((*str)[i + 1] =='\0') || ((*str)[i - 1] == '(') || ((*str)[i + 1] == ')') ) || ( (i > 0) && ((compare((*str)[i - 1], "+-/*")) || (compare((*str)[i + 1], "+-/*")))))) //Неправильное расположение знаков
+        if (compare((*str)[i], "+/*^s") && (( (i == 0) || ((*str)[i + 1] =='\0') || ((*str)[i - 1] == '(') || ((*str)[i + 1] == ')') ) || ( (i > 0) && ((compare((*str)[i - 1], "+-/*^s")) || (compare((*str)[i + 1], "+-/*^s")))))) //Неправильное расположение знаков
         {
             printf("Wrong input. Symbol placement error.\n");
             *mistake = 1;
             return ;
         }
-        if (((*str)[i] == '.') && (( i - 1 < 0) || (compare((*str)[i + 1], "-+/*") || compare((*str)[i - 1], "+-/*") || ((*str)[i + 1] == '\0') || ((*str)[i - 1] == '\0'))))//Неправильное расположение точки WIP
+        if (((*str)[i] == '.') && (( i - 1 < 0) || (compare((*str)[i + 1], "-+/*s") || compare((*str)[i - 1], "+-/*s") || ((*str)[i + 1] == '\0') || ((*str)[i - 1] == '\0'))))//Неправильное расположение точки WIP
         {
             printf("Wrong input. \n");
         }
@@ -86,7 +86,7 @@ void input(char** str, int* mistake, int* lenght) //Ввод примера
         }
         if (((*str)[i] == '(') && (i > 0))
         {
-            if (compare((*str)[i - 1], "(+-/*") == 0)
+            if (compare((*str)[i - 1], "(+-/*^s") == 0)
             {
                 printf("Wrong input. Not found symbol before bracket.\n");
                 *mistake = 1;
@@ -101,7 +101,7 @@ void input(char** str, int* mistake, int* lenght) //Ввод примера
         }
         if (((*str)[i] == ')') && ((*str)[i + 1] != '\0'))
         {
-            if (compare((*str)[i + 1], ")+-/*") == 0)
+            if (compare((*str)[i + 1], ")+-/*^s") == 0)
             {
                 printf("Wrong input. Not found symbol after bracket.\n");
                 *mistake = 1;
