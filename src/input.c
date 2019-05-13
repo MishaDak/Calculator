@@ -19,7 +19,7 @@ int compare (char ch, char *list) //Сравнение символа со сп�
 void input(char** str, int* mistake, int* lenght) //Ввод примера
 {
     int i, j, open_brackets = 0;
- 
+
 
     for (i = 0; (*str)[i] != '\n'; i++)
     {
@@ -62,9 +62,11 @@ void input(char** str, int* mistake, int* lenght) //Ввод примера
             *mistake = 1;
             return ;
         }
-        if (((*str)[i] == '.') && (( i - 1 < 0) || (compare((*str)[i + 1], "-+/*") || compare((*str)[i - 1], "+-/*") || ((*str)[i + 1] == '\0') || ((*str)[i - 1] == '\0'))))//Неправильное расположение точки WIP
+        if (((*str)[i] == '.') && (( i - 1 < 0) || (compare((*str)[i + 1], "-+/*") || compare((*str)[i - 1], "+-/*") || ((*str)[i + 1] == '\0') || ((*str)[i - 1] == '\0'))))//Неправильное расположение точки
         {
-            printf("Wrong input. \n");
+            printf("Wrong input. Dot placement error.\n");
+	    *mistake = 1;
+	    return ;
         }
         if ((*str)[i] == '.')//Точка рядом со скобками
         {
