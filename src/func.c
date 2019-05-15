@@ -83,6 +83,14 @@ double Calculation(char* str, int Start, int End)
             }
             i--;
             break;
+        case '^' :
+            if (Tmp == 0)
+                Tmp = i;
+            break;
+        case 's' :
+            if (Tmp == 0)
+                Tmp = i;
+            break;
         }
     }
     if (Tmp > 0) {
