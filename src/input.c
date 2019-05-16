@@ -3,7 +3,7 @@
 #include "func.h"
 #include "input.h"
 #include<gtk/gtk.h>
-
+#include<string.h>
 extern int mistake;
 extern int lenght;
 int compare (char ch, char *list) //Сравнение символа со списком
@@ -28,11 +28,16 @@ dialog = gtk_dialog_new_with_buttons("Error",
                                              NULL);
     window = gtk_dialog_get_content_area(GTK_DIALOG(dialog));
 int i, j, open_brackets = 0;
- 
-
-    for (i = 0; (*str)[i] != '\n'; i++)
+ int indicator = 1;
+ char* list ="()-+/*^s.0123456789";
+ for(i = 0; (*str)[i] != '\0'; i++)
+ {
+if(compare((*str)[i], list) != 1)
+	indicator = 0;
+ }	 
+    for (i = 0; (*str)[i] != '\0'; i++)
     {
-        if (compare ((*str)[i], "()-+/*^s.0123456789"))
+        if (indicator)
         {
             *lenght = *lenght + 1;
             if ((*str)[i] == '(') //Если скобка открывается
