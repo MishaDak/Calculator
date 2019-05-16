@@ -19,5 +19,7 @@ void button_leftBracket_clicked(GtkWidget* widget, gpointer data);
 void button_rightBracket_clicked(GtkWidget* widget, gpointer data);
 void button_point_clicked(GtkWidget* widget, gpointer data);
 void button_result_clicked(GtkWidget* widget, gpointer data);
+void button_pow_clicked(GtkWidget* widget, gpointer data);
+void button_sqrt_clicked(GtkWidget* widget, gpointer data);
 
 #endif

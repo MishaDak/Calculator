@@ -110,6 +110,14 @@ void button_point_clicked(GtkWidget* widget, gpointer data) {
 	strcat(text_field, (gchar*)data);
 	gtk_entry_set_text(GTK_ENTRY(field), text_field);
 }
+void button_pow_clicked(GtkWidget* widget, gpointer data) {
+	strcat(text_field, (gchar*)data);
+	gtk_entry_set_text(GTK_ENTRY(field), text_field);
+}
+void button_sqrt_clicked(GtkWidget* widget, gpointer data) {
+	strcat(text_field, (gchar*)data);
+	gtk_entry_set_text(GTK_ENTRY(field), text_field);
+}
 void button_result_clicked(GtkWidget* widget, gpointer data) {
 	char* p = &text_field[0];
 	input(&p, &mistake, &lenght);
