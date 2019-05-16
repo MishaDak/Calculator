@@ -97,13 +97,13 @@ int input(char** str, int* lenght)  //Ввод примера
 		}
 		if (((*str)[i] == '.') &&
 		    ((i - 1 < 0) ||
-		     (compare((*str)[i + 1], "-+/*s") ||
-		      compare((*str)[i - 1], "+-/*s") ||
+		     (compare((*str)[i + 1], "-+/*^s") ||
+		      compare((*str)[i - 1], "+-/*^s") ||
 		      ((*str)[i + 1] == '\0') ||
 		      ((*str)[i - 1] ==
-		       '\0'))))  //Неправильное расположение точки WIP
+		       '\0'))))  //Неправильное расположение точки
 		{
-			text = gtk_label_new("Wrong input.");
+			text = gtk_label_new("Wrong input. Dot placement error.");
 
 			gtk_container_add(GTK_CONTAINER(window), text);
 			gtk_widget_show(text);
@@ -166,7 +166,7 @@ int input(char** str, int* lenght)  //Ввод примера
 			}
 		}
 		if (((*str)[i] == ')') && ((*str)[i + 1] != '\0')) {
-			if (compare((*str)[i + 1], ")+-/*^s") == 0) {
+			if (compare((*str)[i + 1], ")+-/*^") == 0) {
 				text = gtk_label_new(
 				    "Wrong input. Not found symbol after "
 				    "bracket.");
@@ -180,5 +180,14 @@ int input(char** str, int* lenght)  //Ввод примера
 			}
 		}
 	}
+        if ((compare((*str)[0], "()+-/*^s")) && ((*str)[1] == '\0'))
+        {
+                text = gtk_label_new("Wrong input. Symbol cant stand alone.");
+	        gtk_container_add(GTK_CONTAINER(window), text);
+	        gtk_widget_show(text);
+	        gtk_dialog_run(GTK_DIALOG(dialog));
+	        gtk_widget_destroy(dialog);
+	        return 1;
+        }
 	return 0;
 }
