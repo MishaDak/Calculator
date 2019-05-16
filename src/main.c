@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
 	    *button_nine, *button_zero;
 	GtkWidget *button_point, *button_leftBracket, *button_rightBracket,
 	    *button_divide, *button_multiply, *button_plus, *button_minus,
-	    *button_result, *button_allclear;
+	    *button_result, *button_allclear, *button_sqrt, *button_pow;
 	button_one = gtk_button_new_with_label("1");  // num block
 	g_signal_connect(G_OBJECT(button_one), "clicked",
 			 G_CALLBACK(button_one_clicked), "1");
