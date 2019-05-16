@@ -82,7 +82,8 @@ gtk_widget_destroy(dialog);
     text = gtk_label_new("Wrong input. Too many opened brackets.");
 
  gtk_container_add(GTK_CONTAINER(window), text); 
-     gtk_dialog_run(GTK_DIALOG(dialog));
+ gtk_widget_show(text);    
+ gtk_dialog_run(GTK_DIALOG(dialog));
 gtk_widget_destroy(dialog);
  *mistake = 1;
         return ;
