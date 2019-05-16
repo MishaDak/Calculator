@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "func.h"
 #include "input.h"
+#include<gtk/gtk.h>
 
 extern int mistake;
 extern int lenght;
@@ -18,7 +19,15 @@ int compare (char ch, char *list) //Сравнение символа со сп�
 
 void input(char** str, int* mistake, int* lenght) //Ввод примера
 {
-    int i, j, open_brackets = 0;
+      GtkWidget *dialog, *window, *text;
+dialog = gtk_dialog_new_with_buttons("Error",
+                                             NULL,
+                                             GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+                                             GTK_STOCK_OK,
+                                             GTK_RESPONSE_ACCEPT,
+                                             NULL);
+    window = gtk_dialog_get_content_area(GTK_DIALOG(dialog));
+int i, j, open_brackets = 0;
  
 
     for (i = 0; (*str)[i] != '\n'; i++)
@@ -35,7 +44,14 @@ void input(char** str, int* mistake, int* lenght) //Ввод примера
                 open_brackets--;
                 if (open_brackets < 0) //Если закрытых скобок больше открытых
                 {
-                    printf("Wrong input. Not found opened bracket before closed bracket.\n");
+                    
+    text = gtk_label_new("Wrong input. Not found opened bracket before closed bracket.");
+
+ gtk_container_add(GTK_CONTAINER(window), text); 
+ gtk_widget_show(text);
+     gtk_dialog_run(GTK_DIALOG(dialog));
+gtk_widget_destroy(dialog);
+
                     *mistake = 1;
                     return ;
                 }
@@ -43,34 +59,65 @@ void input(char** str, int* mistake, int* lenght) //Ввод примера
         }
         else
         {
-            printf("Wrong symbol.\n");
+        
+    text = gtk_label_new("Wrong symbol.");
+
+ gtk_container_add(GTK_CONTAINER(window), text); 
+ gtk_widget_show(text);
+     gtk_dialog_run(GTK_DIALOG(dialog));
+gtk_widget_destroy(dialog); 
+
             *mistake = 1;
             return ;
         }
     }
     if (open_brackets) //Если открытых скобок больше закрытых
     {
-        printf("Wrong input. Too many opened brackets.\n");
-        *mistake = 1;
+       
+    text = gtk_label_new("Wrong input. Too many opened brackets.");
+
+ gtk_container_add(GTK_CONTAINER(window), text); 
+     gtk_dialog_run(GTK_DIALOG(dialog));
+gtk_widget_destroy(dialog);
+ *mistake = 1;
         return ;
     }
     for (i = 0; (*str)[i] != '\0'; i++)
     {
         if (compare((*str)[i], "+/*^s") && (( (i == 0) || ((*str)[i + 1] =='\0') || ((*str)[i - 1] == '(') || ((*str)[i + 1] == ')') ) || ( (i > 0) && ((compare((*str)[i - 1], "+-/*^s")) || (compare((*str)[i + 1], "+-/*^s")))))) //Неправильное расположение знаков
         {
-            printf("Wrong input. Symbol placement error.\n");
+         
+    
+    text = gtk_label_new("Wrong input. Symbol placement error.");
+
+ gtk_container_add(GTK_CONTAINER(window), text); 
+ gtk_widget_show(text);
+     gtk_dialog_run(GTK_DIALOG(dialog));
+gtk_widget_destroy(dialog);  
             *mistake = 1;
             return ;
         }
         if (((*str)[i] == '.') && (( i - 1 < 0) || (compare((*str)[i + 1], "-+/*s") || compare((*str)[i - 1], "+-/*s") || ((*str)[i + 1] == '\0') || ((*str)[i - 1] == '\0'))))//Неправильное расположение точки WIP
         {
-            printf("Wrong input. \n");
+            
+    text = gtk_label_new("Wrong input.");
+
+ gtk_container_add(GTK_CONTAINER(window), text); 
+ gtk_widget_show(text);
+     gtk_dialog_run(GTK_DIALOG(dialog));
+gtk_widget_destroy(dialog); 
         }
         if ((*str)[i] == '.')//Точка рядом со скобками
         {
             if (compare((*str)[i + 1], "()") || compare((*str)[i - 1], "()"))
             {
-                printf("Wrong input. Dot before or after bracket. \n");
+
+    text = gtk_label_new("Wrong input. Dot before or after bracket.");
+
+ gtk_container_add(GTK_CONTAINER(window), text); 
+ gtk_widget_show(text);
+     gtk_dialog_run(GTK_DIALOG(dialog));
+gtk_widget_destroy(dialog);                 
                 *mistake = 1;
                 return ;
             }
@@ -78,7 +125,14 @@ void input(char** str, int* mistake, int* lenght) //Ввод примера
             {
                 if ((*str)[j] == '.')
                 {
-                    printf("Wrong input. Double dot.\n");
+
+    text = gtk_label_new("Wrong input. Double dot.");
+
+ gtk_container_add(GTK_CONTAINER(window), text); 
+ gtk_widget_show(text);
+     gtk_dialog_run(GTK_DIALOG(dialog));
+gtk_widget_destroy(dialog);                     
+
                     *mistake = 1;
                     return ;
                 }
@@ -88,13 +142,27 @@ void input(char** str, int* mistake, int* lenght) //Ввод примера
         {
             if (compare((*str)[i - 1], "(+-/*^s") == 0)
             {
-                printf("Wrong input. Not found symbol before bracket.\n");
+
+    text = gtk_label_new("Wrong input. Not found symbol before bracket.");
+
+ gtk_container_add(GTK_CONTAINER(window), text); 
+ gtk_widget_show(text);
+     gtk_dialog_run(GTK_DIALOG(dialog));
+gtk_widget_destroy(dialog);                 
+
                 *mistake = 1;
                 return ;
             }
             if ((*str)[i + 1] == ')')
             {
-                printf("Wrong input. Empty brackets.\n");
+              
+    text = gtk_label_new("Wrong input. Empty brackets.");
+
+ gtk_container_add(GTK_CONTAINER(window), text); 
+ gtk_widget_show(text);
+     gtk_dialog_run(GTK_DIALOG(dialog));
+gtk_widget_destroy(dialog); 
+
                 *mistake = 1;
                 return ;
             }
@@ -103,7 +171,13 @@ void input(char** str, int* mistake, int* lenght) //Ввод примера
         {
             if (compare((*str)[i + 1], ")+-/*^s") == 0)
             {
-                printf("Wrong input. Not found symbol after bracket.\n");
+
+    text = gtk_label_new("Wrong input. Not found symbol after bracket.");
+
+ gtk_container_add(GTK_CONTAINER(window), text); 
+ gtk_widget_show(text);
+     gtk_dialog_run(GTK_DIALOG(dialog));
+gtk_widget_destroy(dialog);                
                 *mistake = 1;
                 return ;
             }
