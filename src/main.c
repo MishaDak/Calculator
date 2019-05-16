@@ -3,7 +3,6 @@
 
 gchar text_field[100];
 gchar answer[20];
-int mistake = 0;
 int lenght = 0;
 GtkWidget *field;
 

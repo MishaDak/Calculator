@@ -4,7 +4,6 @@
 #include "input.h"
 #include<gtk/gtk.h>
 #include<string.h>
-extern int mistake;
 extern int lenght;
 int compare (char ch, char *list) //Сравнение символа со списком
 {
@@ -17,7 +16,7 @@ int compare (char ch, char *list) //Сравнение символа со сп�
     return 0;
 }
 
-void input(char** str, int* mistake, int* lenght) //Ввод примера
+int input(char** str, int* lenght) //Ввод примера
 {
       GtkWidget *dialog, *window, *text;
 dialog = gtk_dialog_new_with_buttons("Error",
@@ -57,8 +56,8 @@ if(compare((*str)[i], list) != 1)
      gtk_dialog_run(GTK_DIALOG(dialog));
 gtk_widget_destroy(dialog);
 
-                    *mistake = 1;
-                    return ;
+                    
+                    return 1;
                 }
             }
         }
@@ -72,8 +71,8 @@ gtk_widget_destroy(dialog);
      gtk_dialog_run(GTK_DIALOG(dialog));
 gtk_widget_destroy(dialog); 
 
-            *mistake = 1;
-            return ;
+         
+            return 1;
         }
     }
     if (open_brackets) //Если открытых скобок больше закрытых
@@ -85,8 +84,8 @@ gtk_widget_destroy(dialog);
  gtk_widget_show(text);    
  gtk_dialog_run(GTK_DIALOG(dialog));
 gtk_widget_destroy(dialog);
- *mistake = 1;
-        return ;
+ 
+        return 1;
     }
     for (i = 0; (*str)[i] != '\0'; i++)
     {
@@ -100,8 +99,8 @@ gtk_widget_destroy(dialog);
  gtk_widget_show(text);
      gtk_dialog_run(GTK_DIALOG(dialog));
 gtk_widget_destroy(dialog);  
-            *mistake = 1;
-            return ;
+            
+            return 1;
         }
         if (((*str)[i] == '.') && (( i - 1 < 0) || (compare((*str)[i + 1], "-+/*s") || compare((*str)[i - 1], "+-/*s") || ((*str)[i + 1] == '\0') || ((*str)[i - 1] == '\0'))))//Неправильное расположение точки WIP
         {
@@ -124,8 +123,8 @@ gtk_widget_destroy(dialog);
  gtk_widget_show(text);
      gtk_dialog_run(GTK_DIALOG(dialog));
 gtk_widget_destroy(dialog);                 
-                *mistake = 1;
-                return ;
+                
+                return 1;
             }
             for (j = i + 1; (*str)[j] != '\0'; j++)
             {
@@ -139,8 +138,8 @@ gtk_widget_destroy(dialog);
      gtk_dialog_run(GTK_DIALOG(dialog));
 gtk_widget_destroy(dialog);                     
 
-                    *mistake = 1;
-                    return ;
+                    
+                    return 1;
                 }
             }
         }
@@ -156,8 +155,8 @@ gtk_widget_destroy(dialog);
      gtk_dialog_run(GTK_DIALOG(dialog));
 gtk_widget_destroy(dialog);                 
 
-                *mistake = 1;
-                return ;
+                
+                return 1;
             }
             if ((*str)[i + 1] == ')')
             {
@@ -169,8 +168,8 @@ gtk_widget_destroy(dialog);
      gtk_dialog_run(GTK_DIALOG(dialog));
 gtk_widget_destroy(dialog); 
 
-                *mistake = 1;
-                return ;
+                
+                return 1;
             }
         }
         if (((*str)[i] == ')') && ((*str)[i + 1] != '\0'))
@@ -184,9 +183,10 @@ gtk_widget_destroy(dialog);
  gtk_widget_show(text);
      gtk_dialog_run(GTK_DIALOG(dialog));
 gtk_widget_destroy(dialog);                
-                *mistake = 1;
-                return ;
+                
+                return 1;
             }
         }
     }
+return 0;
 }

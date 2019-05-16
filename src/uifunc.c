@@ -3,7 +3,7 @@
 #include"func.h"
 #include"input.h"
 double Calculation(char *str, int Start, int End);
-void input(char** str, int* mistake, int* lenght);
+int input(char** str, int* lenght);
 extern int mistake;
 extern int lenght;
 extern gchar answer[20];
@@ -120,10 +120,9 @@ void button_sqrt_clicked(GtkWidget* widget, gpointer data) {
 }
 void button_result_clicked(GtkWidget* widget, gpointer data) {
 	char* p = &text_field[0];
-	input(&p, &mistake, &lenght);
-	if(mistake == 1)
-		return ;
-	printf("%s,length %d, mistake%d\n", p, lenght, mistake);
+	if(input(&p, &lenght))
+		return;
+	//printf("%s,length %d, mistake%d\n", p, lenght, mistake);
 	sprintf(answer, "%lf", Calculation(text_field, 0, lenght - 1));
 	printf("%s\n", answer);
 	gtk_entry_set_text(GTK_ENTRY(field), answer);
