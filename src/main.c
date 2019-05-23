@@ -75,7 +75,7 @@ int main(int argc, char *argv[]) {
 			 G_CALLBACK(button_result_clicked), "=");
 	button_sqrt = gtk_button_new_with_label("SQRT");
 	g_signal_connect(G_OBJECT(button_sqrt), "clicked",
-			 G_CALLBACK(button_sqrt_clicked), "s");
+			 G_CALLBACK(button_sqrt_clicked), "^(0.5)");
 	button_pow = gtk_button_new_with_label("^");
 	g_signal_connect(G_OBJECT(button_pow), "clicked",
 			 G_CALLBACK(button_pow_clicked), "^");
