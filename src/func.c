@@ -1,6 +1,7 @@
 ﻿#include "func.h"
 #include "input.h"
 #include <stdio.h>
+#include <math.h>
 
 double charToDigit(char* str, int i1, int i2)
 {
@@ -82,6 +83,10 @@ double Calculation(char* str, int Start, int End)
             }
             i--;
             break;
+        case '^' :
+            if (Tmp == 0)
+                Tmp = i;
+            break;
         }
     }
     if (Tmp > 0) {
@@ -95,6 +100,8 @@ double Calculation(char* str, int Start, int End)
         case '/':
             return Calculation(str, Start, Tmp - 1)
                     / Calculation(str, Tmp + 1, End);
+        case '^':
+            return pow(Calculation(str, Start, Tmp - 1),Calculation(str, Tmp + 1, End));
         }
     }
     return charToDigit(str, Start, End);

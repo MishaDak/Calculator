@@ -1,9 +1,9 @@
-#include<string.h>
-#include<gtk/gtk.h>
-#include"func.h"
-#include"input.h"
-double Calculation(char *str, int Start, int End);
-void input(char** str, int* mistake, int* lenght);
+#include <gtk/gtk.h>
+#include <string.h>
+#include "func.h"
+#include "input.h"
+double Calculation(char* str, int Start, int End);
+int input(char** str, int* lenght);
 extern int mistake;
 extern int lenght;
 extern gchar answer[20];
@@ -110,10 +110,18 @@ void button_point_clicked(GtkWidget* widget, gpointer data) {
 	strcat(text_field, (gchar*)data);
 	gtk_entry_set_text(GTK_ENTRY(field), text_field);
 }
+void button_pow_clicked(GtkWidget* widget, gpointer data) {
+	strcat(text_field, (gchar*)data);
+	gtk_entry_set_text(GTK_ENTRY(field), text_field);
+}
+void button_sqrt_clicked(GtkWidget* widget, gpointer data) {
+	strcat(text_field, (gchar*)data);
+	gtk_entry_set_text(GTK_ENTRY(field), text_field);
+}
 void button_result_clicked(GtkWidget* widget, gpointer data) {
 	char* p = &text_field[0];
-	input(&p, &mistake, &lenght);
-	printf("%s,length %d, mistake%d\n", p, lenght, mistake);
+	if (input(&p, &lenght)) return;
+	// printf("%s,length %d, mistake%d\n", p, lenght, mistake);
 	sprintf(answer, "%lf", Calculation(text_field, 0, lenght - 1));
 	printf("%s\n", answer);
 	gtk_entry_set_text(GTK_ENTRY(field), answer);

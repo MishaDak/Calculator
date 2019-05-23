@@ -3,7 +3,6 @@
 
 gchar text_field[100];
 gchar answer[20];
-int mistake = 0;
 int lenght = 0;
 GtkWidget *field;
 
@@ -15,7 +14,7 @@ int main(int argc, char *argv[]) {
 	    *button_nine, *button_zero;
 	GtkWidget *button_point, *button_leftBracket, *button_rightBracket,
 	    *button_divide, *button_multiply, *button_plus, *button_minus,
-	    *button_result, *button_allclear;
+	    *button_result, *button_allclear, *button_sqrt, *button_pow;
 	button_one = gtk_button_new_with_label("1");  // num block
 	g_signal_connect(G_OBJECT(button_one), "clicked",
 			 G_CALLBACK(button_one_clicked), "1");
@@ -74,7 +73,12 @@ int main(int argc, char *argv[]) {
 	button_result = gtk_button_new_with_label("Вычислить");
 	g_signal_connect(G_OBJECT(button_result), "clicked",
 			 G_CALLBACK(button_result_clicked), "=");
-
+	button_sqrt = gtk_button_new_with_label("SQRT");
+	g_signal_connect(G_OBJECT(button_sqrt), "clicked",
+			 G_CALLBACK(button_sqrt_clicked), "^(0.5)");
+	button_pow = gtk_button_new_with_label("^");
+	g_signal_connect(G_OBJECT(button_pow), "clicked",
+			 G_CALLBACK(button_pow_clicked), "^");
 	GtkWidget *window;
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title(GTK_WINDOW(window), "Калькулятор");
@@ -107,7 +111,9 @@ int main(int argc, char *argv[]) {
 	gtk_table_attach_defaults(GTK_TABLE(table), button_multiply, 3, 4, 4,
 				  5);
 	gtk_table_attach_defaults(GTK_TABLE(table), button_zero, 0, 1, 5, 6);
-	gtk_table_attach_defaults(GTK_TABLE(table), button_result, 1, 4, 5, 6);
+	gtk_table_attach_defaults(GTK_TABLE(table), button_sqrt, 1, 2, 5, 6);
+	gtk_table_attach_defaults(GTK_TABLE(table), button_pow, 2, 3, 5, 6);
+	gtk_table_attach_defaults(GTK_TABLE(table), button_result, 3, 4, 5, 6);
 
 	gtk_container_add(GTK_CONTAINER(window), table);
 	gtk_widget_show_all(window);
