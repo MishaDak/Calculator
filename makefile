@@ -24,7 +24,7 @@ build/test/main.o: test/main.c
 	gcc -I thirdparty -Wall -Werror -c test/main.c -o build/test/main.o
 
 build/test/calculation.o: test/calculation.c
-	gcc -I thirdparty -Wall -Werror -c test/calculation.c -c -o build/test/calculation.o `pkg-config --cflags --libs gtk+-2.0` -lm
+	gcc -I thirdparty -Wall -Werror -c test/calculation.c -o build/test/calculation.o `pkg-config --cflags --libs gtk+-2.0` -lm
 
 .PHONY: clean
 
