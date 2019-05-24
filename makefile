@@ -1,4 +1,4 @@
-all: bin/calc bin/calculation-test
+all: bin/calc bin/calc-test
 
 bin/calc: build/src/main.o build/src/func.o
 
@@ -17,17 +17,18 @@ build/src/input.o: src/input.c
 build/src/func.o: src/func.c
 	gcc -Wall -Werror -c src/func.c -o build/src/func.o -lm
 
-bin/calculation-test: build/test/main.o build/test/calculation.o build/src/func.o build/src/input.o
-	gcc -Wall -Werror build/test/main.o build/test/calculation.o build/src/func.o build/src/input.o -o bin/calculation-test -lm
+bin/calc-test: build/test/main.o build/test/calculation.o build/src/func.o
+	gcc -Wall -Werror build/test/main.o build/test/calculation.o build/src/func.o -o bin/calculation-test -lm
 
 build/test/main.o: test/main.c
 	gcc -I thirdparty -Wall -Werror -c test/main.c -o build/test/main.o
 
 build/test/calculation.o: test/calculation.c
-	gcc -I thirdparty -Wall -Werror -c test/calculation.c -c src/func.c -o build/test/calculation.o `pkg-config --cflags --libs gtk+-2.0` -lm
+	gcc -I thirdparty -Wall -Werror -c test/calculation.c -c -o build/test/calculation.o `pkg-config --cflags --libs gtk+-2.0` -lm
 
 .PHONY: clean
 
 clean:
 	rm -rf build/src/*.o
 	rm -rf build/test/*.o
+
