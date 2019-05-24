@@ -121,7 +121,6 @@ void button_sqrt_clicked(GtkWidget* widget, gpointer data) {
 void button_result_clicked(GtkWidget* widget, gpointer data) {
 	char* p = &text_field[0];
 	if (input(&p, &lenght)) return;
-	// printf("%s,length %d, mistake%d\n", p, lenght, mistake);
 	sprintf(answer, "%lf", Calculation(text_field, 0, lenght - 1));
 	printf("%s\n", answer);
 	gtk_entry_set_text(GTK_ENTRY(field), answer);
